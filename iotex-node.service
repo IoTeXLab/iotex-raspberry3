@@ -1,0 +1,21 @@
+# IOTEX Node service (part of systemd)
+# file: /etc/systemd/system/iotex-node.service
+# arm64/raspberry version 0.1
+
+[Unit]
+Description     = IOTEX Node Service
+Documentation   = https://github.com/iotexproject/iotex-core
+Wants           = network-online.target
+After           = network-online.target
+
+[Service]
+Type            = simple
+User            = ubuntu
+Group           = ubuntu
+WorkingDirectory= /home/ubuntu/iotex-core/bin/
+ExecStart       = /home/ubuntu/iotex-core/bin/server -config-path=/home/ubuntu/etc/config.yaml -genesis-path=/home/ubuntu/etc/genesis.yaml -plugin=gateway
+Restart         = on-failure
+RestartSec      = 10
+
+[Install]
+WantedBy        = multi-user.target
