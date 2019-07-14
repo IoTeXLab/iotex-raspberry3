@@ -136,7 +136,9 @@ Save and close the file with `Ctrl+X Y [ENTER]`
 14. Get ready to start the node
 
 ```
+mkdir ~/bin
 wget https://raw.githubusercontent.com/IoTeXLab/iotex-raspberry3/master/bin/start-node > ~/bin/start-node
+chmod +x ~/bin/start-node
 start-node | jq
 ```
 The node will take some time to catch up with the latest blockchain status. You can connect to the Raspberry from a different terminal and watch the current status of your node by first pointing the command line client to your local node, then query the node for the infos:
