@@ -48,7 +48,7 @@ Add the following at the end of your .profile file:
 ```
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$GOROOT/bin:/home/ubuntu/iotex-raspberry3/bin:$PATH
+export PATH=$GOPATH/bin:$GOROOT/bin:/home/ubuntu/bin:$PATH
 ```
 Save the file with `Ctrl+X Y [ENTER]` and reload it with:
 ```
@@ -132,14 +132,17 @@ once the file is open, you need to:
 * locate stderrRedirectFile: and set it to /home/ubuntu/iotex-var/log/s.log
 
 Save and close the file with `Ctrl+X Y [ENTER]`
+
 14. Get ready to start the node
+
 ```
-cd ~
-git clone https://github.com/IoTeXLab/iotex-raspberry3.git
-ioctl config set endpoint localhost:14014 --insecure
+wget https://raw.githubusercontent.com/IoTeXLab/iotex-raspberry3/master/bin/start-node > ~/bin/start-node
 start-node | jq
 ```
+The node will take some time to catch up with the latest blockchain status. You can connect to the Raspberry from a different terminal and watch the current status of your node by first pointing the command line client to your local node, then query the node for the infos:
 
-
-## Test GPIO
-https://wiki.odroid.com/odroid-n2/application_note/gpio/enhancement_40pins
+```
+ioctl config set endpoint localhost:14014 --insecure
+watch ioctl bc info
+```
+You will get an error message until the node is not fully synced, then you will see the blockchain status: current Epoch, Block Height, tps, etc..
