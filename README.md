@@ -147,4 +147,15 @@ The node will take some time to catch up with the latest blockchain status. You 
 ioctl config set endpoint localhost:14014 --insecure
 watch ioctl bc info
 ```
-You will get an error message until the node is not fully synced, then you will see the blockchain status: current Epoch, Block Height, tps, etc..
+You will get an error message until the node is not fully synced and the index built, then you will see the blockchain status: current Epoch, Block Height, tps, etc..
+
+Now that everything looks good, we can stop the node with `Ctrl+C` and configure it as a service
+```
+curl https://raw.githubusercontent.com/IoTeXLab/iotex-raspberry3/master/iotex-node.service > iotex-node.service; sudo mv iotex-node.service /etc/systemd/system/
+
+sudo systemctl daemon-reload
+sudo systemctl enable iotex-node
+sudo service iotex-node start
+```
+
+With this configuration you should have the node already running, and set up to start at each reboot.
