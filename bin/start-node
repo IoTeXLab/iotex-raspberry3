@@ -1,1 +1,2 @@
+#!/bin/bash
 /home/pi/iotex-core/bin/server -config-path=/home/pi/iotex-var/etc/config.yaml -genesis-path=/home/pi/iotex-var/etc/genesis.yaml -plugin=gateway
