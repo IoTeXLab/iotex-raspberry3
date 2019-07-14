@@ -137,7 +137,7 @@ Save and close the file with `Ctrl+X Y [ENTER]`
 
 ```
 mkdir ~/bin
-wget https://raw.githubusercontent.com/IoTeXLab/iotex-raspberry3/master/bin/start-node > ~/bin/start-node
+wget https://raw.githubusercontent.com/IoTeXLab/iotex-raspberry3/master/bin/start-node 
 chmod +x ~/bin/start-node
 start-node | jq
 ```
