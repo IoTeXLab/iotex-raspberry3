@@ -1,3 +1,5 @@
+# Tutorial
+## IoTeX Blockchain Full Node on Raspberry Pi 3 b+
 We will configure our Raspberry Pi 3 in a _headless_ mode, i.e. you will not require any monitor or keyboard, just your PC connected to the same network as the Raspberry. Due to an incompatibility with bolt-DB when compiled with golang for armv6 architecture, we will not install the official Raspbian OS: we need an arm64 OS so we will go with Ubuntu 18.04 Arm64 image for Raspberry 3: 
 
 1. Prepare the micro SD card with the the OS for Raspberry
@@ -46,7 +48,7 @@ Add the following at the end of your .profile file:
 ```
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$GOROOT/bin:/home/ubuntu/bin:$PATH
+export PATH=$GOPATH/bin:$GOROOT/bin:/home/ubuntu/iotex-raspberry3/bin:$PATH
 ```
 Save the file with `Ctrl+X Y [ENTER]` and reload it with:
 ```
@@ -129,9 +131,14 @@ once the file is open, you need to:
 * locate dbPath: and set it to /home/ubuntu/iotex-var/data/poll.db
 * locate stderrRedirectFile: and set it to /home/ubuntu/iotex-var/log/s.log
 
-
-- ioctl config set endpoint localhost:14014 --insecure
-- nano startNew
+Save and close the file with `Ctrl+X Y [ENTER]`
+14. Get ready to start the node
+```
+cd ~
+git clone https://github.com/IoTeXLab/iotex-raspberry3.git
+ioctl config set endpoint localhost:14014 --insecure
+start-node | jq
+```
 
 
 ## Test GPIO
